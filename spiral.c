@@ -57,8 +57,12 @@ for(col=0;col<SIZE;col++) {
 			m[SIZE-row-1][col]=t;
 		}
 	}
-	if(row>0)
-		row--; //go 1 row backwards.
+	//go 1 row backwards.
+	
+	if(row>0 && col == SIZE-1) {
+		row--;
+		col=0;
+	}
 }
 
 printm(m);
