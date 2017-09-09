@@ -61,7 +61,7 @@ for(col=0;col<SIZE;col++) {
 	
 	if(row>0 && col == SIZE-1) {
 		row--;
-		col=0;
+		col=-1;
 	}
 }
 
