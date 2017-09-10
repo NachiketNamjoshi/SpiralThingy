@@ -78,8 +78,15 @@ int row,col,col2;
 row=SIZE/2-1; 		// Start From mid row
 col=0;
 col2=0;
-while(row>=0) {
-	if(m[row][col2] == 1){
+while(row>=0) {		// Dont Reach Unrealistic Values
+
+/*
+ * col2 = index of upper matrix
+ * col = index of lower matrix
+ *
+ */
+
+	if(m[row][col2] == 1){	// col2++ if the spot is filled
 		col2++;
 		if(col2>=SIZE){
 			row--;
@@ -87,27 +94,28 @@ while(row>=0) {
 		}
 		continue;
 	}
-	if(col2 < SIZE) {
-		if(m[SIZE-row-1][col] == 1) {
+
+	if(col2 < SIZE) {	// Dont Reach Unrealistic Values
+
+		if(m[SIZE-row-1][col] == 1) {		// "Outlier" Check
 			int t = m[SIZE-row-1][col];
-			m[SIZE-row-1][col] = m[row][col2];
+			m[SIZE-row-1][col] = m[row][col2];		// swap
 			m[row][col2] = t;
-			col2++;
+			col2++;							// increment indices
 			col++;
 		} else {
-			col++;
+			col++;					// No Outlier, go elsewhere
 		}
 	} else {
-		col2=0;	
+		col2=0;						// Nothing on this row, reset me & go away
 	}
 
 	if(row>=0 && col == SIZE-1) {
 		row--;
-		col=0;
+		col=0;					// Housekeeping
 	}
-	if(row<0)
+	if(row<0)					// Please. Dont Reach Unrealistic Values.
 		break;
 }
-
 printm(m);
 }
