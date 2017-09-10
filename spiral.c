@@ -7,6 +7,7 @@
 
 void printm(int [SIZE][SIZE]);
 void spiral(int [SIZE][SIZE]);
+void checkData(int [SIZE][SIZE]);
 
 
 int main() {
@@ -63,6 +64,49 @@ for(col=0;col<SIZE;col++) {
 		row--;
 		col=-1;
 	}
+}
+
+printm(m);
+printf("\n\n - Outs:\n\n");
+checkData(m);
+}
+
+void checkData(int m[SIZE][SIZE]) {
+
+int row,col,col2;
+
+row=SIZE/2-1; 		// Start From mid row
+col=0;
+col2=0;
+while(row>=0) {
+	if(m[row][col2] == 1){
+		col2++;
+		if(col2>=SIZE){
+			row--;
+			col2=0;
+		}
+		continue;
+	}
+	if(col2 < SIZE) {
+		if(m[SIZE-row-1][col] == 1) {
+			int t = m[SIZE-row-1][col];
+			m[SIZE-row-1][col] = m[row][col2];
+			m[row][col2] = t;
+			col2++;
+			col++;
+		} else {
+			col++;
+		}
+	} else {
+		col2=0;	
+	}
+
+	if(row>=0 && col == SIZE-1) {
+		row--;
+		col=0;
+	}
+	if(row<0)
+		break;
 }
 
 printm(m);
